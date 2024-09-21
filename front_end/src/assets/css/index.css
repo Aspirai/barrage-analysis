@@ -1,0 +1,525 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Simsun",sans-serif;
+}
+body{
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+    position: fixed;
+}
+.background{
+    background: url(../img/background2.jpg) no-repeat;
+    background-position: center;
+    background-size: over;
+    height: 100vh;
+    width: 100%;
+    /* 用于为元素添加一个视觉效果。它可以用于实现模糊、色彩变换、亮度调整等效果。 */
+    filter: blur(10px);
+}
+.header{
+    /* 设置元素定位方式 static正常布局； relative 基于正常位置定位；absolute 基于最近的祖先元素定位；fixed 基于浏览器窗口定位；sticky 滚动到特定位置时固定*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* 内边距 上右下左 四个值； 上下 左右 两个值；上 左右 下 三个值 */
+    padding: 25px 13%;
+    background-color: transparent;
+    /* 元素显示方式 block 新行开始，占用可用宽度；inline 内联元素，同上行开始，依据内容自动调整宽度；inline-block 内联块，上行开始，可设置宽高内外边距；none 元素隐藏，不占空间； flex 显示为flex容器，可使用flex布局；grid 显示为grid容器，可使用grid布局 */
+    display: flex;
+    /* 设置flex容器中所有flex项目的水平对齐方式 flex-start 起始对齐；flex-end 结束对齐；center 中心对齐；space-between 平均分布，间距相等；space-around 平均分布，间隔相等，容器两端间隔为其它间隔一半 */
+    justify-content: space-between;
+    /* 设置flex容器垂直对齐方式 flex-start flex-end center baseline容器基线上对齐 stretch 拉伸以填满容器 */
+    align-items: center;
+    /* 层叠优先级高覆盖低 */
+    z-index: 100;
+}
+
+.navbar a{
+    position: relative;
+    font-size: 16px;
+    color: #fff;
+    margin-right: 30px;
+    /* none 取消下划线；underline 下划线；overline 上划线；line-through 删除线；blink 文本闪烁 */
+    text-decoration: none;
+}
+
+/* 伪元素是CSS中的一种特殊选择器，用于在元素的某个位置插入额外的内容或样式。它们不是HTML中真正的元素，而是通过CSS来创建的。
+    常见的伪元素包括::before和::after，它们可以在元素的前面或后面插入内容，例如图标、文本等。伪元素可以使用content属性来设置插入的内容，也可以使用其他CSS属性来设置样式。伪元素的使用可以增强页面的可读性和美观度，同时也可以减少HTML代码的冗余。 */
+.navbar a::after{
+    /* normal/none 伪元素不插入任何值；attr(attribute)插入元素的属性值；url(url)插入指定url；string插入字符串 */
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    bottom: -5px;
+    border-radius: 5px;
+    /* rotate(angle) 旋转元素的角度；scale（x,y）缩放元素水平和垂直的平移距离；skew(x,y)倾斜元素水平和垂直倾斜的角度；matrix使用矩阵变换对元素变化 */
+    transform: translateY(10px);
+    /* 元素透明度 */
+    opacity: 0;
+    /* transition-property 指定要过渡的属性名称；transition-duration 指定过渡的持续时间；transition-timing-function 指定过渡效果的时间函数；transition-delay指定过渡效果的延迟时间 */
+    /* ease 先后慢中间快；ease-out 先快后慢 */
+    transition: .5s ease;
+}
+.navbar a:hover:after{
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.search-bar{
+    width: 250px;
+    height: 45px;
+    /* transparent 透明色 */
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input{
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    /* 轮廓线样式宽度和颜色 */
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+    padding-left: 10px;
+}
+.search-bar button{
+    width: 40px;
+    height: 100%;
+    background: transparent;
+    outline: none;
+    border: none;
+    color: #fff;
+    /* 改变鼠标指针的外观 auto 自动选择；default 默认鼠标；pointer 手性鼠标，表示该元素可以点击；text 可编辑；move 可拖动；not-allowed 不可用 */
+    cursor: pointer;
+}
+
+/* 常见的伪类选择器包括： 
+:hover：鼠标悬停在元素上时应用的样式。
+:active：元素被激活时应用的样式，例如当用户点击一个链接时。
+:focus：元素获得焦点时应用的样式，例如当用户在表单元素中输入文本时。
+:visited：已访问链接的样式。
+:nth-child()：选择指定父元素下的第n个子元素。
+:first-child：选择指定父元素下的第一个子元素。
+:last-child：选择指定父元素下的最后一个子元素。
+:not()：选择不符合指定选择器的元素。
+:checked：选择被选中的表单元素，例如复选框或单选按钮。*/
+/*input::placeholder 占位符文本； */
+.search-bar input::placeholder{
+    color: #fff;
+}
+
+.search-bar button i{
+    font-size: 22px;
+}
+.container{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 75%;
+    height: 550px;
+    margin-top: 20px;
+    background: url(../img/background2.jpg) no-repeat;
+    background-position: center;
+    background-size: over;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.item{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 58%;
+    height: 100%;
+    color: #fff;
+    background-color: transparent;
+    padding: 80px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.item .logo{
+    color: #fff;
+    font-size: 30px;
+}
+.text-item h2{
+    font-size: 36px;
+    line-height: 1.2;
+    margin: -12px auto;
+}
+.text-item p{
+    font-size: 16px;
+    margin: 20px 0;
+    line-height: 1.5;
+}
+.social-icon a i{
+    color: #fff;
+    font-size: 24px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: .5s ease;
+}
+.social-icon a:hover i{
+    transform: scale(1.2);
+}
+.container .login-section{
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* calc计算元素的宽度为父元素宽度减去58% */
+    width: calc(100% - 58%);
+    height: 100%;
+    color: #fff;
+    /* 是CSS中的一个属性，用于为元素的背景添加一个视觉效果。它可以用于实现模糊、色彩变换、亮度调整等效果。以下是backdrop-filter的常见取值：
+    blur(radius)：为元素的背景添加高斯模糊效果，其中radius表示模糊半径。
+    brightness(value)：调整元素的背景亮度，其中value表示亮度值，可以是百分比或小数。
+    contrast(value)：调整元素的背景对比度，其中value表示对比度值，可以是百分比或小数。
+    grayscale(value)：将元素的背景转换为灰度图像，其中value表示灰度值，可以是百分比或小数。
+    hue-rotate(angle)：调整元素的背景色相，其中angle表示色相角度，可以是正数或负数。
+    invert(value)：将元素的背景颜色反转，其中value表示反转值，可以是百分比或小数。
+    opacity(value)：调整元素的背景透明度，其中value表示透明度值，可以是百分比或小数。
+    saturate(value)：调整元素的背景饱和度，其中value表示饱和度值，可以是百分比或小数。
+    sepia(value)：将元素的背景转换为棕褐色图像，其中value表示棕褐色值，可以是百分比或小数。 */
+    backdrop-filter: blur(10px);
+}
+.login-section .form-box{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.login-section .form-box.register{
+    transform: translateX(530px);
+    transition: transform .6s ease;
+    transition-delay: 0s;
+}
+.login-section.active .form-box.register{
+    transform: translateX(0px);
+    transition-delay: .7s;
+}
+
+.login-section .form-box.login{
+    transform: translateX(0px);
+    transition: transform .6s ease;
+    transition-delay: 0.7s;
+}
+.login-section.active .form-box.login{
+    transform: translateX(530px);
+    transition-delay: 0s;
+}
+
+.login-section .form-box h2{
+    text-align: center;
+    font-size: 25px;
+}
+.form-box .input-box{
+    width: 340px;
+    height: 50px;
+    border-bottom: 2px solid #fff;
+    margin: 30px 0;
+    position: relative;
+}
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding-right: 28px;  
+    color: #fff;
+ }
+ .input-box label{
+    position: absolute;
+    top: 31%;
+    left: 0;
+    transform: translateT(-50%);
+    font-size: 16px;
+    font-weight: 600px;
+    pointer-events: none;
+    transition: .5s ease;
+ }
+ .input-box .icon{
+    position: absolute;
+    top: 13px;
+    right: 0;
+    font-size: 19px;
+ }
+ /* 当用户聚焦在<input>元素上时，与其相邻的<label>元素的颜色将变为红色。 */
+.input-box input:focus~ label,
+/* 当用户在<input>元素中填写了有效值时，与其相邻的<label>元素的颜色将变为绿色。 */
+.input-box input:valid~ label{
+    top: -15px;
+}
+.remember-password{
+    font-size: 14px;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+.remember-password label input{
+    accent-color: #fff;
+    margin-right: 3px;
+}
+.remember-password a{
+    color: #fff;
+    text-decoration: none;
+}
+.remember-password a:hover{
+    text-decoration: underline;
+}
+.btn{
+    background: #fff;
+    width: 100%;
+    height: 45px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #2376b7;
+    font-size: 16px;
+    color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.4);
+
+}
+.create-accout{
+    font-size: 14.5px;
+    text-align: center;
+    margin: 25px;
+
+}
+.create-accout p a{
+    color: #fff;
+    font-weight: 600px;
+    text-decoration: none;
+}
+.create-accout p a:hover{
+    text-decoration: underline;
+}
+.foot p{
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    font-size: 15px;
+    left: 47%;
+}
+.pic{
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 60px;
+    height: 60px;
+    z-index: 111;
+}
+
+
+/*  */
+/*******************meitu********************/
+/*  */
+
+.bg{
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/1.jpg);
+    background-repeat: no-repeat;
+    background-position: center 0px;
+    background-size: cover;
+    animation: changeBg 8s infinite;
+}
+@keyframes changeBg{
+    0%{
+        background-image: url(../img/1.jpg);
+    }
+    17%{
+        background-image: url(../img/2.jpg);
+    }
+    34%{
+        background-image: url(../img/3.jpg);
+    }
+    51%{
+        background-image: url(../img/4.jpg);
+    }
+    68%{
+        background-image: url(../img/5.jpg);
+    }
+    85%{
+        background-image: url(../img/6.jpg);
+    }
+    100%{
+        background-image: url(../img/1.jpg);
+    }
+}
+li{
+    list-style: none;
+}
+.cubeBox{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -100px;
+    transform-style: preserve-3d;
+}
+
+.cube{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -50px 0 0 -50px;
+    transform-style: preserve-3d;
+    transform: rotateX(-10deg) rotateY(45deg);
+    animation: move 4s linear infinite;
+}
+.cube li{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: all 1s ease;
+}
+
+.cube li img{
+    width: 100%;
+    height: 100%;
+}
+.cube li:nth-child(1){
+    transform: rotateX(0deg) translateZ(50px);
+}
+.cube li:nth-child(2){
+    transform: rotateX(180deg) translateZ(50px);
+}
+.cube li:nth-child(3){
+    transform: rotateX(-90deg) translateZ(50px);
+}
+.cube li:nth-child(4){
+    transform: rotateX(90deg) translateZ(50px);
+}
+.cube li:nth-child(5){
+    transform: rotateY(-90deg) translateZ(50px);
+}
+.cube li:nth-child(6){
+    transform: rotateY(90deg) translateZ(50px);
+}
+
+.bigcube{
+    width: 200px;
+    height: 200px;
+    margin: -100px 0 0 -100px;
+}
+.bigcube li:nth-child(1){
+    transform: rotateX(0deg) translateZ(100px);
+}
+.bigcube li:nth-child(2){
+    transform: rotateX(180deg) translateZ(100px);
+}
+.bigcube li:nth-child(3){
+    transform: rotateX(-90deg) translateZ(100px);
+}
+.bigcube li:nth-child(4){
+    transform: rotateX(90deg) translateZ(100px);
+}
+.bigcube li:nth-child(5){
+    transform: rotateY(-90deg) translateZ(100px);
+}
+.bigcube li:nth-child(6){
+    transform: rotateY(90deg) translateZ(100px);
+}
+@keyframes move {
+    0%{transform: rotateX(-13deg) rotateY(0deg);}
+    100%{transform: rotateX(-13deg) rotateY(360deg);}
+}
+.cubeBox:hover .bigcube li:nth-child(1){
+    transform: rotateX(0deg) translateZ(200px);
+}
+.cubeBox:hover .bigcube li:nth-child(2){
+    transform: rotateX(180deg) translateZ(200px);
+}
+.cubeBox:hover .bigcube li:nth-child(3){
+    transform: rotateX(-90deg) translateZ(200px);
+}
+.cubeBox:hover .bigcube li:nth-child(4){
+    transform: rotateX(90deg) translateZ(200px);
+}
+.cubeBox:hover .bigcube li:nth-child(5){
+    transform: rotateY(-90deg) translateZ(200px);
+}
+.cubeBox:hover .bigcube li:nth-child(6){
+    transform: rotateY(90deg) translateZ(200px);
+}
+
+/* poetry */
+.background1{
+    background: url(../img/background2.jpg) no-repeat;
+    background-position: center;
+    background-size: over;
+    height: 100vh;
+    width: 100%;
+    /* 用于为元素添加一个视觉效果。它可以用于实现模糊、色彩变换、亮度调整等效果。 */
+    filter: blur(10px);
+}
+.poetry{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 75%;
+    height: 80%;
+    margin-top: 20px;
+    background: url(../img/background2.jpg) no-repeat;
+    background-position: center;
+    background-size: over;
+    border-radius: 20px;
+    /* 用于控制元素内容溢出时的处理方式 visible：默认值，内容溢出时不进行裁剪，会显示在元素外部
+    hidden：内容溢出时进行裁剪，不显示在元素外部。scroll：内容溢出时进行裁剪，但会显示滚动条以便查看全部内容。
+    auto：根据内容是否溢出自动选择scroll或visible。*/
+    overflow: scroll;
+}
+/* 隐藏滚动条 */
+::-webkit-scrollbar{
+    display: none;
+}
+.parent{
+    margin-top: 24px;
+    padding: 24px;
+
+}
+.parent p{
+    text-indent: 2em;
+    font-weight: 400;
+}
+.parent h3{
+    text-align: left;
+    margin-bottom: 10px;
+}
+.parent .child{
+    text-align: center;
+    line-height: 30px;
+
+}
+.parent .child .text{
+    margin-top: 30px;
+    line-height: 30px;
+}
+.parent .child .couneter{
+    text-align: center;
+    font-size: 13px;
+}
