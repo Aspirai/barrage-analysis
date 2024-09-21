@@ -4,21 +4,7 @@
 
 项目运行如下图展示：
 
-![1](C:\Users\Administrator\Desktop\2\1.png)
 
-![2](C:\Users\Administrator\Desktop\2\2.png)
-
-![3](C:\Users\Administrator\Desktop\2\3.png)
-
-![4](C:\Users\Administrator\Desktop\2\4.png)
-
-![5](C:\Users\Administrator\Desktop\2\5.png)
-
-![6](C:\Users\Administrator\Desktop\2\6.png)
-
-![7](C:\Users\Administrator\Desktop\2\7.png)
-
-![8](C:\Users\Administrator\Desktop\2\8.png)
 
 # 快速使用
 
